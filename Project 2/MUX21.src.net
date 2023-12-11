@@ -1,0 +1,18 @@
+.subckt MUX21 in1 in2 ctrl out VDD GND
+x_in1_ctrlinv_nand	in1	  ctrl_inv_out	 sel1_out	VDD	GND	NAND_2X	
+x_inv1 		       	ctrl      ctrl_inv_out			VDD	GND	INV_2X
+x_in2_ctrl_nand		in2	  ctrl		 sel2_out	VDD	GND	NAND_2X
+x_sel12_nand		sel1_out  sel2_out	 out		VDD	GND	NAND_2X
+.ends
+
+.subckt NAND_2X in1 in2 out vdd gnd
+mp1 out in1 vdd vdd P_18 w=0.47u l=0.18u
+mp2 out in2 vdd vdd P_18 w=0.47u l=0.18u
+mn1 net in1 gnd gnd N_18 w=0.47u l=0.18u
+mn2 out in2 net gnd N_18 w=0.47u l=0.18u
+.ends
+
+.subckt INV_2X in out vdd gnd
+mp1 out in vdd vdd P_18 w=0.47u l=0.18u
+mn1 out in gnd gnd N_18 w=0.47u l=0.18u
+.ends
